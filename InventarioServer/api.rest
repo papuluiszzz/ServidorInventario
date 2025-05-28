@@ -1,15 +1,14 @@
 
-
 ### Obtener todos los usuarios
 GET http://localhost:8000/usuario
 
-### Crear un nuevo usuario (primero subir foto, luego usa la URL)
+### Crear un nuevo usuario
 POST http://localhost:8000/usuario
 Content-Type: application/json
 
 {
-  "nombre": "Juan",
-  "apellido": "Pérez",
+  "nombre": "Juan Carlos",
+  "apellido": "Pérez González",
   "foto": "/uploads/usuarios/usuario_1748393213203_314f3135-453b-44d0-be0b-701fb99b01d4.jpg"
 }
 
@@ -32,12 +31,94 @@ Content-Type: application/json
   "idUsuario": 1
 }
 
+
+### Obtener todas las categorías
+GET http://localhost:8000/categoria
+
+### Crear una nueva categoría
+POST http://localhost:8000/categoria
+Content-Type: application/json
+
+{
+  "nombreCategoria": "Electrónicos"
+}
+
+### Actualizar una categoría
+PUT http://localhost:8000/categoria
+Content-Type: application/json
+
+{
+  "idCategoria": 1,
+  "nombreCategoria": "Electrónicos y Tecnología"
+}
+
+### Eliminar una categoría
+DELETE http://localhost:8000/categoria
+Content-Type: application/json
+
+{
+  "idCategoria": 1
+}
+
+
+### Obtener todos los productos
+GET http://localhost:8000/producto
+
+### Obtener producto por ID
+GET http://localhost:8000/producto/1
+
+### Obtener productos por categoría
+GET http://localhost:8000/producto/categoria/1
+
+### Crear un nuevo producto
+POST http://localhost:8000/producto
+Content-Type: application/json
+
+{
+  "descripcion": "iPhone 15 Pro Max",
+  "cantidad": "25",
+  "precio": "1299.99",
+  "unidadMedida": "unidades",
+  "idCategoria": 1
+}
+
+### Actualizar un producto
+PUT http://localhost:8000/producto
+Content-Type: application/json
+
+{
+  "idProducto": 1,
+  "descripcion": "iPhone 15 Pro Max 256GB",
+  "cantidad": "20",
+  "precio": "1399.99",
+  "unidadMedida": "unidades",
+  "idCategoria": 1
+}
+
+### Eliminar un producto
+DELETE http://localhost:8000/producto
+Content-Type: application/json
+
+{
+  "idProducto": 1
+}
+
+
+
+
+### Obtener foto de usuario
+GET http://localhost:8000/uploads/usuarios/usuario_1748393213203_314f3135-453b-44d0-be0b-701fb99b01d4.jpg
+
+### Eliminar foto de usuario
 DELETE http://localhost:8000/upload
 Content-Type: application/json
 
 {
   "fileName": "usuario_1640995200000_abc123.jpg"
 }
+### Obtener todos los productos de categoría "Electrónicos" (ID: 1)
+GET http://localhost:8000/producto/categoria/1
 
-
+### Obtener todos los productos de categoría "Computadoras" (ID: 2)
+GET http://localhost:8000/producto/categoria/2
 
