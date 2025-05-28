@@ -1,7 +1,8 @@
 import { Application, oakCors } from "./Dependencies/dependencias.ts";
 import { routerUsuario } from "./Routes/usuarioRouter.ts";
 import { routerFile } from "./Routes/fileRouter.ts";
-
+import { routerCategoria } from "./Routes/categoriaRouter.ts";
+import { routerProducto } from "./Routes/productoRouter.ts";
 const app = new Application();
 
 // Configurar CORS para permitir peticiones desde el frontend
@@ -33,7 +34,9 @@ app.use(async (ctx, next) => {
     console.log(`${ctx.request.method} ${ctx.request.url} - ${ctx.response.status} - ${ms}ms`);
 });
 
-const routers = [routerUsuario, routerFile];
+const routers = [routerUsuario, routerFile,
+    routerCategoria,
+    routerProducto];
 
 routers.forEach((router) => {
     app.use(router.routes());
