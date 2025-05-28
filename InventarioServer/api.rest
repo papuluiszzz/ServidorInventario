@@ -1,0 +1,67 @@
+### ===== USUARIOS =====
+
+### Obtener todos los usuarios
+GET http://localhost:8000/usuario
+
+### Crear un nuevo usuario (primero sube la foto, luego usa la URL)
+POST http://localhost:8000/usuario
+Content-Type: application/json
+
+{
+  "nombre": "Juan",
+  "apellido": "Pérez",
+  "foto": "/uploads/usuarios/usuario_1640995200000_abc123.jpg"
+}
+
+### Actualizar un usuario
+PUT http://localhost:8000/usuario
+Content-Type: application/json
+
+{
+  "idUsuario": 1,
+  "nombre": "Juan Carlos",
+  "apellido": "Pérez López",
+  "foto": "/uploads/usuarios/usuario_1640995200000_abc123.jpg"
+}
+
+### Eliminar un usuario
+DELETE http://localhost:8000/usuario
+Content-Type: application/json
+
+{
+  "idUsuario": 1
+}
+
+### ===== FOTOS DE USUARIOS =====
+
+### Subir foto de usuario (usa Postman/Insomnia)
+### No se puede probar directamente en VS Code REST Client
+POST http://localhost:8000/upload
+Content-Type: multipart/form-data
+
+### Para probar con curl desde terminal:
+### curl -X POST -F "file=@foto-perfil.jpg" http://localhost:8000/upload
+
+### Obtener/ver foto de usuario
+GET http://localhost:8000/uploads/usuarios/usuario_1640995200000_abc123.jpg
+
+### Eliminar foto de usuario
+DELETE http://localhost:8000/upload
+Content-Type: application/json
+
+{
+  "fileName": "usuario_1640995200000_abc123.jpg"
+}
+
+
+
+### 3. Crear usuario con esa URL:
+POST http://localhost:8000/usuario
+Content-Type: application/json
+
+{
+  "nombre": "María",
+  "apellido": "García",
+  "foto": "/uploads/usuarios/usuario_1640995200000_abc123.jpg"
+}
+
