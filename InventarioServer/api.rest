@@ -10,7 +10,7 @@ Content-Type: application/json
 {
   "nombre": "Juan",
   "apellido": "Pérez",
-  "foto": "/uploads/usuarios/usuario_1640995200000_abc123.jpg"
+  "foto": "/uploads/usuarios/usuario_1748393213203_314f3135-453b-44d0-be0b-701fb99b01d4.jpg"
 }
 
 ### Actualizar un usuario
