@@ -24,7 +24,7 @@ export class Producto {
     }
 
     public async SeleccionarProductos(): Promise<ProductoConCategoria[]> {
-        const { rows: productos } = await conexion.execute(`
+        const result = await conexion.execute(`
             SELECT 
                 p.idProducto,
                 p.descripcion,
@@ -37,11 +37,11 @@ export class Producto {
             LEFT JOIN categoria c ON p.idCategoria = c.idCategoria
             ORDER BY p.descripcion ASC
         `);
-        return productos as ProductoConCategoria[];
+        return (result.rows || []) as ProductoConCategoria[];
     }
 
     public async SeleccionarProductoPorId(id: number): Promise<ProductoConCategoria | null> {
-        const { rows: productos } = await conexion.execute(`
+        const result = await conexion.execute(`
             SELECT 
                 p.idProducto,
                 p.descripcion,
@@ -55,11 +55,12 @@ export class Producto {
             WHERE p.idProducto = ?
         `, [id]);
         
+        const productos = result.rows || [];
         return productos.length > 0 ? productos[0] as ProductoConCategoria : null;
     }
 
     public async SeleccionarProductosPorCategoria(idCategoria: number): Promise<ProductoConCategoria[]> {
-        const { rows: productos } = await conexion.execute(`
+        const result = await conexion.execute(`
             SELECT 
                 p.idProducto,
                 p.descripcion,
@@ -73,7 +74,7 @@ export class Producto {
             WHERE p.idCategoria = ?
             ORDER BY p.descripcion ASC
         `, [idCategoria]);
-        return productos as ProductoConCategoria[];
+        return (result.rows || []) as ProductoConCategoria[];
     }
 
     public async InsertarProducto(): Promise<{ success: boolean; message: string; producto?: Record<string, unknown> }> {
@@ -130,7 +131,7 @@ export class Producto {
             if (error instanceof z.ZodError) {
                 return { success: false, message: error.message };
             } else {
-                return { success: false, message: error.message || "Error interno del servidor" };
+                return { success: false, message: "Error interno del servidor" };
             }
         }
     }
@@ -193,7 +194,7 @@ export class Producto {
             if (error instanceof z.ZodError) {
                 return { success: false, message: error.message };
             } else {
-                return { success: false, message: error.message || "Error interno del servidor" };
+                return { success: false, message: "Error interno del servidor" };
             }
         }
     }
