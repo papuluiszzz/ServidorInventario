@@ -3,6 +3,9 @@ import { uploadFile, getFile, deleteFile, updateUserPhoto } from "../Controllers
 
 const routerFile = new Router();
 
+// Endpoint de prueba
+
+
 // Subir foto de usuario
 routerFile.post("/upload", uploadFile);
 
