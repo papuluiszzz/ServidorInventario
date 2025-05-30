@@ -3,6 +3,7 @@ import { routerUsuario } from "./Routes/usuarioRouter.ts";
 import { routerFile } from "./Routes/fileRouter.ts";
 import { routerCategoria } from "./Routes/categoriaRouter.ts";
 import { routerProducto } from "./Routes/productoRouter.ts";
+import { routerMassUpload } from "./Routes/SubidaMasivaRouter.ts";
 const app = new Application();
 
 // Configurar CORS para permitir peticiones desde el frontend
@@ -36,7 +37,7 @@ app.use(async (ctx, next) => {
 
 const routers = [routerUsuario, routerFile,
     routerCategoria,
-    routerProducto];
+    routerProducto,routerMassUpload];
 
 routers.forEach((router) => {
     app.use(router.routes());

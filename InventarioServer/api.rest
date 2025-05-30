@@ -28,7 +28,7 @@ DELETE http://localhost:8000/usuario
 Content-Type: application/json
 
 {
-  "idUsuario": 1
+  "idUsuario": 2
 }
 
 
